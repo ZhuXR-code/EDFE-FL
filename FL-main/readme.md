@@ -27,20 +27,23 @@ pyfhel 注意安装的版本不同，参数用的不同
                                --gauss-std --gauss-relative --gauss-rel-std
                                --sv-permutations --tag
   utils/dataset.py             新增 Dirichlet(alpha) 非 IID 划分（--alpha 且 --iid 0 时启用）
-  EDFE_FL_main_终版1拆开解密.py / EDFE_FL_main_终版2不拆开.py
+  EDFE_FL_main_自适应缩放.py / EDFE_FL_main_固定缩放.py
                               客户端训练接入攻击；解密后按 --rule 做防御聚合；
                               结果与曲线文件名带 rule/attack/ratio/tag 标识
+                              两脚本仅量化参数取法不同：前者按各客户端权重自适应计算
+                              scale/offset 后取 max 统一（量化误差~1e-15，精度优先）；
+                              后者全局写死 scale=100/offset=10（误差~5e-3，简洁基线）
 
 运行示例（在这些脚本所在目录执行，用项目实际环境的 python）：
   # 基线 fedavg
-  python EDFE_FL_main_终版1拆开解密.py --rule fedavg --epochs 50
+  python EDFE_FL_main_自适应缩放.py --rule fedavg --epochs 50
 
   # JSD-Krum 防御 + 30% 标签翻转攻击（f 自动 = ceil(0.3*num_users)）
-  python EDFE_FL_main_终版1拆开解密.py --rule jsd-krum --attack-type label_flipping \
+  python EDFE_FL_main_自适应缩放.py --rule jsd-krum --attack-type label_flipping \
       --malicious-behavior-rate 0.3 --epochs 50
 
   # sign_flip delta 档
-  python EDFE_FL_main_终版1拆开解密.py --rule jsd-krum --attack-type sign_flip \
+  python EDFE_FL_main_自适应缩放.py --rule jsd-krum --attack-type sign_flip \
       --sign-flip-mode delta --malicious-behavior-rate 0.3 --epochs 50
 
   # 批量消融（3 个防御 × 3 个比例）
