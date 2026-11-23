@@ -1,0 +1,32 @@
+# Python 缓存
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# 虚拟环境
+.venv/
+venv/
+ENV/
+env/
+
+# IDE / 编辑器
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 运行产物
+*.log
+log/
+save/
+runs/
+ablation_out/
+*.tmp
+
+# WorkBuddy 工作数据
+.workbuddy/
+
+# 操作系统
+.DS_Store
+Thumbs.db
