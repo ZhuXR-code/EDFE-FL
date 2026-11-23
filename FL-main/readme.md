@@ -57,5 +57,5 @@ pyfhel 注意安装的版本不同，参数用的不同
   JSD-Krum 的 k = n - f - 2（不做 max(1)）；topk 含自身距离（对角线置 0）；
   eps = np.finfo(float).eps。已用 smoke 脚本验证与参考项目保留集完全一致。
 
-说明：run_ablation.py 调用终版脚本需要项目真实环境（WSL + Charm/PBC + torch）。
+说明：run_ablation.py 调用加密主脚本需要项目真实环境（WSL + Charm/PBC + torch）。
 Windows 侧仅做语法/算法自检，不含加密库运行时。
