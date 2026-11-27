@@ -6,7 +6,7 @@
 并把每组的配置签名写入 .claims 目录防止重复运行（并发安全：文件已存在即跳过）。
 
 用法示例：
-  python run_ablation.py --script EDFE_FL_main_自适应缩放.py \
+  python run_ablation.py --script SRFL_FL_main_自适应缩放.py \
       --rules fedavg krum jsd-krum jsd-only --ratios 0.1 0.3 0.5 \
       --attack-type label_flipping --epochs 50 --num-users 20 --local-ep 2
 
@@ -95,7 +95,7 @@ def run_one(args, rule, ratio):
 
 def main():
     p = argparse.ArgumentParser(description='EDFE-FE-FL 消融实验编排')
-    p.add_argument('--script', default='EDFE_FL_main_自适应缩放.py',
+    p.add_argument('--script', default='SRFL_FL_main_自适应缩放.py',
                    help='要运行的加密主脚本名（自适应缩放 / 固定缩放）')
     p.add_argument('--rules', nargs='+',
                    default=['fedavg', 'krum', 'jsd-krum', 'jsd-only'])
